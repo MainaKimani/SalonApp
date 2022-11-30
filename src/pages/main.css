@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap');
+
+.top_bar{
+    position: fixed;
+    width: 100vw;
+    height: 88px;
+    border: 1px solid #111;
+    background: rgba(253, 253, 253, 0);
+    padding: 0px 1rem 1rem 1rem;
+    display:flex;
+    align-items:flex-end;
+}
+.top_bar_content{
+    width: 100vw;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+}
+.app_name{
+    font-family: 'Cinzel';
+}
+.menu_icon{
+    right: 0;
+}
+.app_body{
+    min-height: 100vh;
+    padding-top: 88px;
+}
+
+.login_page{
+    padding: 1rem;
+    min-height: 80vh;
+    display: flex;
+    align-items:center;
+}
+
+.login_page .reg_option{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+.login_page .copyright{
+    width: 100%;
+
+    font-size: 14px;
+    position: absolute;
+    left: 0;
+    bottom: 3rem;
+    display: flex;
+    justify-content: center;
+}
