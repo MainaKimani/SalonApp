@@ -1,7 +1,6 @@
+import { IonContent, IonPage } from '@ionic/react';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import {  Avatar,
-          Button,
+import {  Button,
           CssBaseline,
           TextField,
           FormControlLabel,
@@ -14,21 +13,57 @@ import {  Avatar,
 import LoadingButton from '@mui/lab/LoadingButton';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './main.css';
+import { loginUser, googleSignIn,verifyEmail } from '../firebaseConfig';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
-import { color } from '@mui/system';
+
 
 const Login: React.FC = () => {
-  const [loading, setLoading] = React.useState(!true);
-
-  const loginSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const loginSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setLoading(true);
     const data = new FormData(event.currentTarget);
     const email = data.get('email');
     const password = data.get('password');
-    setLoading(!true)
+    
+    //validation functions
+    function validate_email(email: any) {
+      const expression = /^[^@]+@\w+(\.\w+)+\w$/
+       if (expression.test(email) === true) {
+         // Email is good
+         return true
+       } else {
+         // Email isn't good
+         return false
+       }
+    }
+    function validate_password(password: any) {
+      if (password.length <= 5) { // Firebase only accepts lengths greater than 6
+        return false} 
+      else {
+        return true
+      }
+    }
+    const email_warning:any = document.getElementById('email_warning');
+    const password_warning:any = document.getElementById('password_warning');
+    const login_warning:any = document.getElementById('login_warning');
+    email_warning.innerHTML = '';
+    password_warning.innerHTML = '';
+    login_warning.innerHTML = '';
+
+    //Run validation checks
+    if (validate_email(email) === false) {
+      email_warning.innerHTML='Please add a valid email address';
+      return
+    }
+    if (validate_password(password) === false) {
+      password_warning.innerHTML='Password ought to be 6 or more characters';
+      return
+    }
+
+    //After all checks are passed, proceed to sign in functionality
+    await loginUser(email, password);
+ 
 
     console.log({
       email: email,
@@ -41,6 +76,7 @@ const Login: React.FC = () => {
   });
 
   return (
+    <IonContent>
     <div className="login_page">
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
@@ -58,17 +94,17 @@ const Login: React.FC = () => {
             </Typography>
             <Button
                 onClick={()=>{
-                  console.log('Google');
+                  googleSignIn();
                 }}
                 color="secondary"
                 type="submit"
                 fullWidth
                 variant="contained"
                 disableElevation
-                sx={{ mt: 5, mb: 1 }}>  with Google
+                sx={{ mt: 2, mb: 1 }}>  with Google
               </Button>
             <Box component="form" noValidate onSubmit={loginSubmit} sx={{ mt: 1 }}>
-              <Typography variant="body1" color="text" align='center' sx={{ mt: 3, mb: 3 }}>
+              <Typography variant="body1" color="text" align='center' sx={{ mt: 0, mb: 1 }}>
                 {'or'}
               </Typography>
               <TextField
@@ -86,9 +122,7 @@ const Login: React.FC = () => {
                 className='warning'
                 id='email_warning'
                 variant="body1"
-                sx={{ mt: -1, mb: 1, color:"#EA4335", fontSize:'12px' }}>
-                {'Invalid email address'}
-              </Typography>
+                sx={{ mt: -1, mb: 1, color:"#EA4335", fontSize:'12px' }}> </Typography>
               <TextField
                 margin="normal"
                 required
@@ -103,9 +137,7 @@ const Login: React.FC = () => {
                 className='warning'
                 id='password_warning'
                 variant="body1"
-                sx={{ mt: -1, mb: 1, color:"#EA4335", fontSize:'12px' }}>
-                {'Invalid email address'}
-              </Typography>
+                sx={{ mt: -1, mb: 1, color:"#EA4335", fontSize:'12px' }}> </Typography>
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
@@ -113,24 +145,24 @@ const Login: React.FC = () => {
               <LoadingButton
                 fullWidth
                 type='submit'
-                onClick={()=>{
-                  setLoading(!true);
-                }}
-                loading={loading}
                 variant="contained"
                 sx={{ mt: 3, mb: 5, visibility: 'visible' }}
               >
                 Log In
               </LoadingButton>
-
+              <Typography 
+                className='warning'
+                id='login_warning'
+                variant="body1"
+                sx={{ mt: -1, mb: 1, color:"#EA4335", fontSize:'12px' }}> </Typography>
               <Grid container>
                 <Grid className='reg_option' item xs>
-                  <Link href="#" variant="body2">
+                  <Link variant="body2" onClick= {verifyEmail}>
                     Forgot password?
                   </Link>
                 </Grid>
                 <Grid className='reg_option' item>
-                  <Link href="#" variant="body2">
+                  <Link href="/Register" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
@@ -148,6 +180,7 @@ const Login: React.FC = () => {
             {', '+new Date().getFullYear()}
       </Typography>
     </div>
+    </IonContent>
     );
 }
 
