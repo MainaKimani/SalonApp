@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap');
 
+/*/////////////  top bar   /////////////////*/
 .top_bar{
     position: fixed;
     width: 100vw;
@@ -27,11 +28,12 @@
     padding-top: 88px;
 }
 
+
+/*/////////////  log in and sign up   /////////////////*/
 .login_page{
     padding: 1rem;
     min-height: 80vh;
     display: flex;
-    align-items:center;
 }
 
 .login_page .reg_option{
@@ -46,7 +48,7 @@
     font-size: 14px;
     position: absolute;
     left: 0;
-    bottom: 3rem;
+    bottom: 2rem;
     display: flex;
     justify-content: center;
 }
