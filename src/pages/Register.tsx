@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from "react";
 import { IonContent, IonPage } from '@ionic/react';
 import {  Button,
           CssBaseline,
@@ -13,13 +13,52 @@ import {  Button,
 import LoadingButton from '@mui/lab/LoadingButton';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './main.css';
-import { signinUser, googleSignIn } from '../firebaseConfig';
+import { SigninUser, GoogleSignIn } from '../firebaseConfig';
+import Index from './Index';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
 
+import { getAuth, 
+  onAuthStateChanged, 
+  User} from "firebase/auth";
+import { initializeApp } from 'firebase/app';
+
+
+const firebaseConfig = {
+apiKey: "AIzaSyArXPrIwlhp24cyVgEx4QWP0VvIlm8mIcI",
+authDomain: "blend-parlor.firebaseapp.com",
+projectId: "blend-parlor",
+storageBucket: "blend-parlor.appspot.com",
+messagingSenderId: "852223461821",
+appId: "1:852223461821:web:91f28297ba1de7bbc8aad4",
+measurementId: "G-FY30XBCS3T"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
 
 const Register: React.FC = () => {
+  const [user, setUser] = useState<User | '' | null>(null);
+
+  const authListener = () =>{
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(user)
+        setUser(user);
+      } else {
+        console.log(user)
+        console.log('is not Authenticated')
+        setUser('');
+      }     
+    })
+  }
+
+  useEffect(() =>{
+    authListener();
+  }, []);
+
   const loginSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -82,7 +121,7 @@ const Register: React.FC = () => {
     }
     
     //After all checks are passed, proceed to sign in functionality
-    await signinUser(firstname, lastname, email, password);
+    await SigninUser(firstname, lastname, email, password);
     
 
     console.log({
@@ -97,6 +136,7 @@ const Register: React.FC = () => {
     palette:{secondary:{main:'#EA4335',},}
   });
 
+  if(user){return <Index/>}
   return (
     <IonPage>
     <IonContent>
@@ -117,7 +157,7 @@ const Register: React.FC = () => {
             </Typography>
             <Button
                 onClick={async()=>{
-                  googleSignIn ();
+                  GoogleSignIn ();
                   console.log('Clicked google sign in');
                 }}
                 color="secondary"
@@ -206,7 +246,7 @@ const Register: React.FC = () => {
               <Grid container>
                 <Grid className='reg_option' item>
                   
-                  <Link href="/Login" variant="body2">
+                  <Link href="/home" variant="body2">
                     {"Have an account? Log In"}
                   </Link>
                 </Grid>

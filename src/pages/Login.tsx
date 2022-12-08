@@ -13,11 +13,10 @@ import {  Button,
 import LoadingButton from '@mui/lab/LoadingButton';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './main.css';
-import { loginUser, googleSignIn,verifyEmail } from '../firebaseConfig';
+import { LoginUser, GoogleSignIn,verifyEmail } from '../firebaseConfig';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
-
 
 const Login: React.FC = () => {
   const loginSubmit = async(event: React.FormEvent<HTMLFormElement>) => {
@@ -62,7 +61,7 @@ const Login: React.FC = () => {
     }
 
     //After all checks are passed, proceed to sign in functionality
-    await loginUser(email, password);
+    await LoginUser(email, password);
  
 
     console.log({
@@ -77,6 +76,7 @@ const Login: React.FC = () => {
 
   return (
     <IonContent>
+    <IonPage>
     <div className="login_page">
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
@@ -94,7 +94,7 @@ const Login: React.FC = () => {
             </Typography>
             <Button
                 onClick={()=>{
-                  googleSignIn();
+                  GoogleSignIn();
                 }}
                 color="secondary"
                 type="submit"
@@ -180,6 +180,7 @@ const Login: React.FC = () => {
             {', '+new Date().getFullYear()}
       </Typography>
     </div>
+    </IonPage>
     </IonContent>
     );
 }
