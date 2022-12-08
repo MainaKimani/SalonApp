@@ -1,4 +1,4 @@
-import { IonPage, IonContent } from '@ionic/react';
+import { useHistory } from 'react-router';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, 
@@ -8,8 +8,8 @@ import { getAuth,
          signInWithPopup,
          onAuthStateChanged,
          updateProfile,
-         sendPasswordResetEmail  } from "firebase/auth";
-import Login from './pages/Login';
+         sendPasswordResetEmail,  
+         signOut} from "firebase/auth";
 
 const firebaseConfig = {
     apiKey: "AIzaSyArXPrIwlhp24cyVgEx4QWP0VvIlm8mIcI",
@@ -27,27 +27,22 @@ const analytics = getAnalytics(app);
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
 
-
 //check if user is authenticated
 export function isAuthenticated(){
-    onAuthStateChanged(auth, (user) => {
-        var isAuth = true;
-        if (!user) {
-            isAuth = false;
-            console.log(isAuth)
-            return isAuth;
-          } else {
-            console.log(isAuth)
-            return isAuth;
-            }   
-      });
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log(user)
+      return true;
+    } else {
+    console.log('is not Authenticated')
+    return false;
+    }     
+  })
 }
 
-
-
-
 //login function
-export async function loginUser(email: any, password: any){
+export async function LoginUser(email: any, password: any){
+  let history = useHistory();
     try{   
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
@@ -55,6 +50,7 @@ export async function loginUser(email: any, password: any){
                 const user = userCredential.user;
                 // ...
                 console.log(user);
+                history.push('/index');
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -84,7 +80,7 @@ export async function loginUser(email: any, password: any){
 }
 
 //sign up
-export async function signinUser(fname: any, lname: any, email: any, password: any){
+export async function SigninUser(fname: any, lname: any, email: any, password: any){
     try{
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
@@ -96,11 +92,11 @@ export async function signinUser(fname: any, lname: any, email: any, password: a
                     const name = user.displayName;
                     console.log(name);
                 // ...
-              }).catch((error)=>{
+              }).catch((error:any)=>{
                 const errorMessage:any = error.code;
                 console.log(errorMessage);
               })
-            .catch((error) => {
+            .catch((error:any) => {
               const errorMessage:any = error.message;
               if (errorMessage ==="Firebase: Error (auth/email-already-in-use)."){
                 const password_email:any = document.getElementById('email_warning');
@@ -121,7 +117,7 @@ export async function signinUser(fname: any, lname: any, email: any, password: a
 }
 
 //Google sign in
-export function googleSignIn (){
+export function GoogleSignIn (){
     signInWithPopup(auth, provider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
@@ -155,5 +151,14 @@ export function verifyEmail(){
     const errorMessage = error.message;
     console.error(errorMessage)
     // ..
+  });
+}
+
+//sign out
+export function logOut(){
+  signOut(auth).then(() => {
+    // Sign-out successful.
+  }).catch((error:any) => {
+    // An error happened.
   });
 }
