@@ -5,7 +5,6 @@
     position: fixed;
     width: 100vw;
     height: 88px;
-    border: 1px solid #111;
     background: rgba(253, 253, 253, 0);
     padding: 0px 1rem 1rem 1rem;
     display:flex;
