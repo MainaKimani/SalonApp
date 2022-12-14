@@ -10,6 +10,7 @@ import { getAuth,
          updateProfile,
          sendPasswordResetEmail,  
          signOut} from "firebase/auth";
+import { Link } from 'react-router-dom';
 
 const firebaseConfig = {
     apiKey: "AIzaSyArXPrIwlhp24cyVgEx4QWP0VvIlm8mIcI",
