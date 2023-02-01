@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
+
+.user_banner{
+    min-height: 30vh;
+    padding: 5rem 1rem 3rem 1rem;
+    display: flex;
+    align-items: center;
+    font-family: 'Poppins';
+    color: #f0f0f0;
+    background: linear-gradient(90deg, #4b6cb7 0%, #213152 100%);
+
+    border: solid 1px #111;
+}
+.user_banner .profile_img{
+    width: 3rem;
+    height: 3rem;
+    margin-right: 0.75rem;
+    border-radius: 50%;
+}
+.user_banner .profile_img .user_img{
+    height: 100%;
+    border-radius: 50%;
+}
+.user_banner .user .username{
+    font-weight: 500;
+}
+.user_banner .user .user_message{
+    font-weight: 300;
+}
+
+.salon_container{
+    min-height: 75vh;
+    position: relative;
+    top: -3rem;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    background: #fdfdfd;
+    padding: 1rem;
+    font-family: 'Poppins';
+}
+.salon_banner_img{
+    border-radius: 20px 20px 0 0;
+    margin-bottom: 5px;
+}
+.salon_container .sub_title{
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 0;
+    margin-bottom: 10px;
+}
+.salon_container .book_btn{
+    margin-top: 1rem;
+}
+.salon_container .salon_info .details{
+    margin: 0;
+    margin-bottom: 10px;
+}
+.salon_container .salon_info .location, .time{
+    display:flex;
+    font-weight:300;
+}
+.salon_container .salon_info .salon_icon{
+    margin-right: 1rem;
+}
+.spacer{
+    border-top: solid 1px #36363648;
+    width: 90%;
+    margin: auto;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.salon_container .services_highlight .services_list{
+    display: flex;
+    justify-content: space-between;
+}
+.salon_container .services_highlight .service_container{
+    text-align: center;
+    font-size: 0.75rem;
+}
+.salon_container .services_highlight .service_container .service{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 20px;
+    background: #ffffff;
+
+}
+.salon_container .services_highlight .service_container .more{
+    border: 1px solid #3b5486;
+}
+.salon_container .services_highlight .service_container .more_tag{
+    color: #3b5486;
+}
+.salon_container .services_highlight .service_container .more_icon{
+    height: 100%;
+    width: 100%;
+    font-size: 64px;
+    color:#3b5486;
+}
+.service_img{
+    width: 70%
+}
