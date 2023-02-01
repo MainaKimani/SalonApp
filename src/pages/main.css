@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
+
+html, body{
+    margin: 0;
+}
+main{
+    font-family:'Poppins',sans-serif;
+    font-size: 1rem;
+    margin: 0;
+}
+
+
+.app_body{
+    min-height: 100vh;
+    padding-top: 88px;
+}
+
+
+/*/////////////  log in and sign up   /////////////////*/
+.login_page{
+    padding: 1rem;
+    min-height: 80vh;
+    display: flex;
+}
+
+.login_page .reg_option{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+.login_page .copyright{
+    width: 100%;
+    font-size: 14px;
+    position: absolute;
+    left: 0;
+    bottom: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
