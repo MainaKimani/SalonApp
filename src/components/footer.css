@@ -1,0 +1,18 @@
+.footer_bar{
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    bottom: -0px;
+    width: 100vw;
+    height: 52px;
+    font-weight: 200;
+    background: #fafafa;
+    box-shadow: 0px -2px 2px #c0c0c0;
+}
+.icon{
+    color: #727272;
+}
+.icon:hover{
+    color: #464646;
+}
