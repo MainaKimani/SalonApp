@@ -42,6 +42,8 @@ const Home = () => {
       }
     }, [user,loading]);
   
+    console.log('user: ', customer)
+
   let name = customer.displayName
   let email = customer.email
   let photo = customer.photoURL
@@ -59,7 +61,7 @@ const Home = () => {
         <Header />
         <div className='user_banner'>
           <div className='profile_img'>
-            <img className='user_img' src={placeholder}/>
+            <img className='user_img' src={photo ? photo : placeholder}/>
           </div>
           <div className='user'>
             <div className='username'> Hello, {name} </div>
@@ -119,16 +121,6 @@ const Home = () => {
           </div>
 
           <div className='spacer'> </div>
-
-          {/* <div className='gallery'>
-            <p className='sub_title'>Gallery</p>
-            <div className='gallery_left'> </div>
-            <div className='gallery_right'>
-              <div className='gallery_right_top'> </div>
-              <div className='gallery_right_bottom'> </div>
-            </div>
-            <p className='gallery_more'>More on instagram</p>
-          </div> */}
 
           <Button onClick={()=>{logout()}} color="secondary" type="submit" variant="contained" 
           disableElevation sx={{ mt: 2, mb: 1 }}> <Link to="/home">logOut</Link> </Button>

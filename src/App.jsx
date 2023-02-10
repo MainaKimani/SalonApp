@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Services from './pages/Services';
+import BookingPage from './pages/BookingPage';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -38,7 +39,8 @@ const App = () => (
         <Route path="/" component={Home} exact/>
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
-        <Route path="/services" component={Services} />
+        <Route path="/services" component={Services} exact/>
+        <Route path="/services/:id" component={BookingPage} />
       </AuthProvider>
       </IonRouterOutlet>
     </IonReactRouter>
