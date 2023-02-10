@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
+
+.banner{
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    min-height: 30vh;
+    padding: 6rem 1rem 3rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Poppins';
+    color: #f0f0f0;
+    background: linear-gradient(90deg, #4b6cb7 0%, #213152 100%);
+}
+.banner .back_arrow{
+    width: 2rem;
+    height: 2rem;
+    color: #ed6c02;
+}
+.banner .banner_info{
+    font-weight: 300;
+}
+
+.services_container{
+    min-height: 75vh;
+    position: relative;
+    top: 10rem;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    background: #fdfdfd;
+    padding: 1rem;
+    font-family: 'Poppins';
+}
+.services_container .title{
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0;
+    margin-bottom: 10px;
+}
+.services_container .element{
+    font-family: 'Poppins';
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    width: 100%;
+}
+.services_container .element p{
+    font-weight: 300; 
+}
+.link{
+    text-decoration: none;
+    color: #202020;
+    width: 100%;
+}
+
+.section_title{
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+/******************************** Stylist Picker ********************************/
+.services_container .stylists_list{
+ display: flex;
+ flex-wrap: wrap;
+ margin-bottom: 50px;
+}
+.stylists_list .card_stylist{
+    width: 10rem;
+    margin: 10px;
+}
+.stylists_list .active{
+    border:#4b6cb7 3px solid;
+}
+.stylists_list ion-card{
+    margin: 0;
+    height: 100%;
+    font-family: 'Poppins';
+}
+.stylists_list ion-card-title{
+    padding: 5px 10px;
+    font-size: 18px;
+    font-weight: 500;
+}
+.stylists_list ion-card img{
+    object-fit: contain;
+}
+/******************************** Date Picker ********************************/
+.date{
+    margin-bottom: 50px;
+}
+
+/*Date Picker*/
+.rdp{
+    margin:0;
+}
+.rdp-months{
+    width:100%;
+    align-items: center;
+    justify-content: center;
+}
+.rdp-months{
+    margin: auto;
+}
+/******************************** Time Picker ********************************/   
+.services_container .time{
+    display: block;
+    font-family: 'Poppins';
+}
+.time_box {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    font-family: sans-serif;
+    text-align: center;
+    width: 320px;
+    margin-bottom: 50px;
+}
+.hour {
+  background-color: aliceblue;
+  align-items: center;
+  cursor: default;
+  display: flex;
+  font-size: 24px;
+  height: 50px;
+  justify-content: center;
+  width: 75px;
+  margin:2px;
+  font-size: 1rem;
+}
+.active_time {
+  background-color: #4b6cb7;
+  color: white;
+}
+
+.confirm .details{
+    margin-left: 1rem;
+}
+
+
+
+
+
+.hiden{
+    display: none !important;
+}
+.bottom_spacer{
+    margin-top: 100px;
+}

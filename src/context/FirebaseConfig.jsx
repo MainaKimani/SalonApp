@@ -3,6 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, 
          GoogleAuthProvider,
          sendPasswordResetEmail } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyArXPrIwlhp24cyVgEx4QWP0VvIlm8mIcI",
@@ -18,21 +19,21 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
 export const auth = getAuth(app);
+export const db = getFirestore(app);
 
 
 
 
 
 //Resetting password
-export function verifyEmail(){
-    const email = 'kalexmaina@gmail.com';
-    sendPasswordResetEmail(auth, email)
-  .then(() => {
-    console.log('email sent - password reset')
-  })
-  .catch((error) => {
-    const errorMessage = error.message;
-    console.error(errorMessage)
-    // ..
-  });
-}
+// export function verifyEmail(){
+//     const email = 'kalexmaina@gmail.com';
+//     sendPasswordResetEmail(auth, email)
+//   .then(() => {
+//     console.log('email sent - password reset')
+//   })
+//   .catch((error) => {
+//     const errorMessage = error.message;
+//     console.error(errorMessage)
+//   });
+// }
